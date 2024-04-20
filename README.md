@@ -1,2 +1,3 @@
 # Predict-Customer-Spenditure
-Predicting customer salary, and predicting the psossibility of buying a recommeded service based on using customers transactions, age, transaction frequency
+
+Predicting customer salary and predicting the possibility of buying a recommeded service based on customers transactions, age, transaction frequency
