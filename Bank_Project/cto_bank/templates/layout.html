@@ -19,7 +19,7 @@
       <!-- Responsive-->
       <link rel="stylesheet" href="{{url_for('static', filename='css/responsive.css') }}">
       <!-- fevicon -->
-      <link rel="icon" href="{{url_for('static', filename='images/fevicon.png" type="image/gif') }}" />
+      <link rel="icon" href="{{url_for('static', filename='images/fevicon.png') }}" type="image/gif" />
       <!-- Scrollbar Custom CSS -->
       <link rel="stylesheet" href="{{url_for('static', filename='css/jquery.mCustomScrollbar.min.css') }}" >
       <!-- Tweaks for older IEs-->
@@ -31,16 +31,15 @@
    </head>
    <!-- body -->
    {% block content %}
-
-       <!-- end footer -->
-   <!-- Javascript files-->
-   <script src="{{url_for('static', filename='js/jquery.min.js') }}"></script>
-   <script src="{{url_for('static', filename='js/popper.min.js') }}"></script>
-   <script src="{{url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
-   <script src="{{url_for('static', filename='js/jquery-3.0.0.min.js') }}"></script>
-   <!-- sidebar -->
-   <script src="{{url_for('static', filename='js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
-   <script src="{{url_for('static', filename='js/custom.js') }}"></script>
+   <!--End body-->
    {% endblock content %}
 
+      <!-- Javascript files-->
+      <script src="{{url_for('static', filename='js/jquery.min.js') }}"></script>
+      <script src="{{url_for('static', filename='js/popper.min.js') }}"></script>
+      <script src="{{url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+      <script src="{{url_for('static', filename='js/jquery-3.0.0.min.js') }}"></script>
+      <!-- sidebar -->
+      <script src="{{url_for('static', filename='js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
+      <script src="{{url_for('static', filename='js/custom.js') }}"></script>
    </html>
