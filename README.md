@@ -1,6 +1,6 @@
 # Predict-Customer-Spenditure
 
-![CTO_BANK](attachment:Capture.PNG)
+![CTO_BANK](Capture.PNG)
 
 ## Chief Technology Operations Project - CTO_Bank Project
 
