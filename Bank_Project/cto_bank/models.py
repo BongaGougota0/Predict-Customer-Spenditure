@@ -11,28 +11,29 @@ def load_user(user_id):
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(20), nullable=False)
-    phone_number = db.Column(db.String(10))
-    email = db.Column(db.String(120), unique=True, nullable=False)
+    account_number = db.Column(db.String(10), unique=True)  # e.g from CSV => C5841053
+    email = db.Column(db.String(120), unique=True, nullable=True)
     image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
-    password = db.Column(db.String(60), nullable=False)
+    password = db.Column(db.String(60), nullable=True)
     date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    active = db.Column(db.String(5), nullable=False)
-    role = db.Column(db.String(15), nullable=False)
+    role = db.Column(db.String(15), nullable=False, default='customer')
+    gender = db.Column(db.String(2), nullable=False)
 
     def __repr__(self):
         return f""
 
 class Transaction(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    transaction_id = db.Column(db.String(20), unique=True)
+    transaction_id = db.Column(db.String(20), unique=True)             
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     transaction_amount = db.Column(db.Integer, nullable=False)
     transaction_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    transaction_time = db.Column(db.DateTime, default=datetime.utcnow)
     transaction_location = db.Column(db.String(200), nullable=False)
     
     # One-to-one relationship with Service
-    service_id = db.Column(db.Integer, db.ForeignKey('service.id'), unique=True)
-    service = db.relationship('Service', backref='transaction', uselist=False)
+    service_id = db.Column(db.Integer, db.ForeignKey('service.id'), unique=True, nullable=True)
+    # service = db.relationship('Service', backref='transaction', uselist=False)
 
     def __repr__(self):
         return f"Transaction(transaction_id={self.transaction_id}, user_id={self.user_id},\

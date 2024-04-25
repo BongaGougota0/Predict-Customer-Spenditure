@@ -496,7 +496,7 @@ ul.btn li:last-child {
 
 .read_more {
      font-size: 16px;
-     background-color: #17094c;
+     background-color: #009899;
      max-width: 160px;
      width: 100%;
      color: #fff !important;
@@ -748,7 +748,7 @@ ul.btn li:last-child {
 }
 
 .subscribe_btn:hover {
-     background-color: #17094c;
+     background-color: #009899;
 }
 
 
@@ -805,7 +805,7 @@ ul.btn li:last-child {
 }
 
 .testimonial_Carousel .carousel-indicators li {
-     background-color: #180552;
+     background-color: #009899;
      width: 25px;
      height: 25px;
      border-radius: 30px;
@@ -871,7 +871,7 @@ ul.btn li:last-child {
 }
 
 .contac_form .send_btn:hover {
-     background-color: #17094c;
+     background-color: #009899;
      transition: ease-in all 0.5s;
      color: #fff;
 }
@@ -900,7 +900,7 @@ ul.btn li:last-child {
 /** footer **/
 
 .footer {
-     background-color: #180552;
+     background-color: #009899;
      text-align: center;
      padding-top: 90px;
      margin-top: 90px;
@@ -971,7 +971,7 @@ ul.social_icon li:last-child {
 }
 
 ul.social_icon li a {
-     color: #180552;
+     color: #009899;
      width: 40px;
      height: 40px;
      background: #fff;
@@ -1035,7 +1035,7 @@ ul.img_icon li {
      line-height: 22px;
      text-align: center;
      padding-top: 25px;
-     border-top: #301e64 solid 1px;
+     border-top: #009899 solid 1px;
 }
 
 .copyright a {
