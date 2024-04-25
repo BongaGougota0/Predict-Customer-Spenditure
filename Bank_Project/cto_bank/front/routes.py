@@ -9,6 +9,9 @@ def home():
 
 @front.route("/login/", methods=['GET', 'POST'])
 def login():
+    if request.method == "POST":
+        
+        return redirect(url_for('mainbp.dashboard'))
     return render_template('login.html')
 
 

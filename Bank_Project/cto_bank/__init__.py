@@ -18,6 +18,8 @@ def create_app():
     login_manager.init_app(app)
 
     from cto_bank.front.routes import front
+    from cto_bank.main.routes import mainbp
+    app.register_blueprint(mainbp)
     app.register_blueprint(front)
     return app
 

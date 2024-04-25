@@ -1,0 +1,24 @@
+{% extends "board_layout.html" %}
+{% block content %}
+    <div class="transaction-grid">
+        <div class="grid-header">
+            <div class="grid-cell">Date</div>
+            <div class="grid-cell">Description</div>
+            <div class="grid-cell">Amount</div>
+            <div class="grid-cell">Type</div>
+        </div>
+        <div class="grid-row">
+            <div class="grid-cell">2023-02-16</div>
+            <div class="grid-cell">Payment to Some User acc num</div>
+            <div class="grid-cell">R100.00</div>
+            <div class="grid-cell">Debit</div>
+        </div>
+        <div class="grid-row">
+            <div class="grid-cell">2023-02-17</div>
+            <div class="grid-cell">Deposit from User acc num</div>
+            <div class="grid-cell">R50.00</div>
+            <div class="grid-cell">Credit</div>
+        </div>
+        <!-- Add more grid rows here -->
+    </div>
+{% endblock content %}
