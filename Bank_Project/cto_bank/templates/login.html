@@ -13,7 +13,7 @@
 		}
 		
 		.login-header {
-			background-color: #337ab7;
+			background-color: #009899;
 			color: #fff;
 			padding: 10px;
 			text-align: center;
@@ -33,7 +33,7 @@
 		.login-btn {
 			width: 100%;
 			padding: 10px;
-			background-color: #337ab7;
+			background-color: #009899;
 			color: #fff;
 			border: none;
 			border-radius: 5px;
@@ -41,19 +41,19 @@
 		}
 		
 		.login-btn:hover {
-			background-color: #23527c;
+			background-color: #009899;
 		}
 	</style>
 </head>
 <body>
 	<div class="login-page">
 		<div class="login-header">
-			<h2>Login</h2>
+			<h2>Welcome</h2>
 		</div>
 		<div class="login-form">
 			<form action="{{ url_for('front.login') }}" method="POST">
-				<input type="text" class="input-field" placeholder="Username" />
-				<input type="password" class="input-field" placeholder="Password" />
+				<input type="text" class="input-field" name="account_number" placeholder="Account Number" />
+				<input type="password" class="input-field" name="password" placeholder="Password" />
 				<button class="login-btn">Login</button>
 			</form>
 		</div>

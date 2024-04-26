@@ -1,4 +1,8 @@
 from flask import render_template, url_for, flash, redirect, request, Blueprint
+from flask_login import login_user, logout_user
+from cto_bank import db, bcrypt
+
+from cto_bank.models import User
 
 front = Blueprint('front', __name__)
 
@@ -10,8 +14,14 @@ def home():
 @front.route("/login/", methods=['GET', 'POST'])
 def login():
     if request.method == "POST":
-        
-        return redirect(url_for('mainbp.dashboard'))
+        acc_number = request.form['account_number']
+        acc_password = request.form['password']
+        #check user exists
+        user = User.query.filter_by(account_number = acc_number).first()
+        if user and bcrypt.check_password_hash(user.password, acc_password):
+            login_user(user, remember = True)
+            flash('User logged in','success')
+            return redirect(url_for('mainbp.dashboard'))
     return render_template('login.html')
 
 
@@ -22,3 +32,9 @@ def about():
 @front.route("/services/", methods=['GET', 'POST'])
 def services():
     return render_template('services.html')
+
+@front.route("/logout", methods=["GET"])
+def logout():
+    logout_user()
+    flash('Logged Out!', 'warning')
+    return redirect(url_for('front.home'))

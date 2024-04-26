@@ -2,6 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
+from flask_migrate import Migrate
 
 
 db = SQLAlchemy()
@@ -11,6 +12,8 @@ login_manager.login_view = "front.login"
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mysite.db'
+app.config["SECRET_KEY"] = 'secret_key_for_flask_session'
+migrate = Migrate(app, db)
 
 def create_app():
     db.init_app(app)
