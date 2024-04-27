@@ -22,6 +22,7 @@ def login():
             login_user(user, remember = True)
             flash('User logged in','success')
             return redirect(url_for('mainbp.dashboard'))
+        flash('Please check your account no. or password', 'warning')
     return render_template('login.html')
 
 
