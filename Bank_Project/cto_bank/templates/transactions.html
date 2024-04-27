@@ -1,24 +1,52 @@
-{% extends "board_layout.html" %}
+<!-- {% extends "board_layout.html" %} -->
 {% block content %}
-    <div class="transaction-grid">
-        <div class="grid-header">
-            <div class="grid-cell">Date</div>
-            <div class="grid-cell">Description</div>
-            <div class="grid-cell">Amount</div>
-            <div class="grid-cell">Type</div>
-        </div>
-        <div class="grid-row">
-            <div class="grid-cell">2023-02-16</div>
-            <div class="grid-cell">Payment to Some User acc num</div>
-            <div class="grid-cell">R100.00</div>
-            <div class="grid-cell">Debit</div>
-        </div>
-        <div class="grid-row">
-            <div class="grid-cell">2023-02-17</div>
-            <div class="grid-cell">Deposit from User acc num</div>
-            <div class="grid-cell">R50.00</div>
-            <div class="grid-cell">Credit</div>
-        </div>
-        <!-- Add more grid rows here -->
-    </div>
+<head>
+    <title>My Transactions</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Transaction Records</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>TransactionID</th>
+            <th>Transaction Location</th>
+            <th>TransactionDate</th>
+            <th>TransactionAmount (R)</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for transaction in transactions %}
+            <tr>
+                <td>{{ transaction.id }}</td>
+                <td>{{ transaction.transaction_location }}</td>
+                <td>{{ transaction.transaction_date }}</td>
+                <td>{{ transaction.transaction_amount }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
 {% endblock content %}
