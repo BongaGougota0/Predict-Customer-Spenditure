@@ -1,0 +1,54 @@
+{% extends "board_layout.html" %}
+{% block content %}
+
+<head>
+    <title>Services for me</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Services recommended for you, {{ current_user.name }}</h2>
+    <tbody>
+        <div class="services">
+            <div class="container">
+                <div class="row">
+                    {% for service in services %}
+                    <div class="col-md-3 col-sm-6">
+                        <div id="ho_color" class="services_main">
+                            <i><img src="{{ url_for('static', filename='images/services_icon1.png') }}" alt="#" /></i>
+                            <img class="ho" src="{{ url_for('static', filename='images/services_icon1h.png') }}" alt="#" />
+                            <h3>{{service.service_title}}</h3>
+                            <h2>{{service.service_cost}}</h2>
+                            <p>{{service.service_description}}
+                            </p>
+                            <a class="read_more" href="#">Read More</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </tbody>
+</body>
+{% endblock content %}

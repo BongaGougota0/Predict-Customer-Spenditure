@@ -18,17 +18,18 @@
                      <div class="full">
                         <div class="center-desk">
                            <div class="logo">
-                              <a href="{{ url_for('front.home') }}"><img src="{{ url_for('static', filename='images/logo.png') }}"
-                                  alt="#" /></a>
+                              <a href="{{ url_for('front.home') }}"><img
+                                    src="{{ url_for('static', filename='images/logo.png') }}" alt="#" /></a>
                            </div>
                         </div>
                      </div>
                   </div>
                   <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
                      <nav class="navigation navbar navbar-expand-md navbar-dark ">
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04"
-                         aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                           data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false"
+                           aria-label="Toggle navigation">
+                           <span class="navbar-toggler-icon"></span>
                         </button>
                         <div class="collapse navbar-collapse" id="navbarsExample04">
                            <ul class="navbar-nav mr-auto">
@@ -38,11 +39,9 @@
                               <li class="nav-item">
                                  <a class="nav-link" href="{{ url_for('front.about') }}">About</a>
                               </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="{{ url_for('front.services') }}">Services </a>
-                              </li>
                               <li class="nav-item d_none le_co">
-                                 <a class="nav-link" href="{{ url_for('front.login') }}"><i  class="fa fa-user" aria-hidden="true"></i> Login</a>
+                                 <a class="nav-link" href="{{ url_for('front.login') }}"><i class="fa fa-user"
+                                       aria-hidden="true"></i> Login</a>
                               </li>
                            </ul>
                         </div>
@@ -51,7 +50,15 @@
                </div>
             </div>
             <!-- end header inner -->
-
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">
+               {{ message }}
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
             <!-- end header -->
             <!-- banner -->
             <section class="banner_main">
@@ -70,8 +77,10 @@
                                  <div class="col-md-12 col-lg-7">
                                     <div class="text-bg">
                                        <span>Predictive Insight</span>
-                                       <p>cto models will predict a user's expected salary based on their account balance and forecast 
-                                          their future spending habits, providing valuable insights for informed decision-making.</p>
+                                       <p>cto models will predict a user's expected salary based on their account
+                                          balance and forecast
+                                          their future spending habits, providing valuable insights for informed
+                                          decision-making.</p>
                                     </div>
                                  </div>
                               </div>
@@ -86,8 +95,10 @@
                                  <div class="col-md-12 col-lg-7">
                                     <div class="text-bg">
                                        <span>Predictive Analysis</span>
-                                       <p>cto models will predict a user's expected salary based on their account balance and forecast 
-                                          their future spending habits, providing valuable insights for informed decision-making. </p>
+                                       <p>cto models will predict a user's expected salary based on their account
+                                          balance and forecast
+                                          their future spending habits, providing valuable insights for informed
+                                          decision-making. </p>
                                     </div>
                                  </div>
                               </div>
@@ -97,10 +108,10 @@
 
                   </div>
                   <a class="carousel-control-prev" href="#banner1" role="button" data-slide="prev">
-                  <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                     <i class="fa fa-chevron-left" aria-hidden="true"></i>
                   </a>
                   <a class="carousel-control-next" href="#banner1" role="button" data-slide="next">
-                  <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                     <i class="fa fa-chevron-right" aria-hidden="true"></i>
                   </a>
                </div>
             </section>
@@ -115,17 +126,19 @@
          <div class="row d_flex">
             <div class="col-md-12 col-lg-5">
                <div class="about_img">
-                  <figure><img src="{{ url_for('static', filename='images/about.png') }}" alt="#"/></figure>
+                  <figure><img src="{{ url_for('static', filename='images/about.png') }}" alt="#" /></figure>
                </div>
             </div>
             <div class="col-md-12 col-lg-7">
                <div class="titlepage">
                   <h2> <span class="yellow">ABOUT US</span><br>Welcome TO CTO_BANK</h2>
                   <p>this project is to create a machine learning model that will recomend products and services to a
-                      customer, predict a customers salarary and predict a bank customers likelihood of purchasing products or
-                       services offered by the bank (CTO_Bank). The drivers of this prediction will be evaluated from the
-                        following data exploration the frequency a user transacts, the average spend of the user per transaction,
-                         customer account balance average over the months or days. </p>
+                     customer, predict a customers salarary and predict a bank customers likelihood of purchasing
+                     products or
+                     services offered by the bank (CTO_Bank). The drivers of this prediction will be evaluated from the
+                     following data exploration the frequency a user transacts, the average spend of the user per
+                     transaction,
+                     customer account balance average over the months or days. </p>
                   <a class="read_more" href="{{ url_for('front.about') }}">Read More</a>
                </div>
             </div>
@@ -134,7 +147,7 @@
    </div>
    <!-- about section -->
 
-   <!-- services section --> 
+   <!-- services section -->
    <div class="services">
       <div class="container">
          <div class="row">
@@ -148,8 +161,8 @@
             <!-- Iterate and display service objects here. -->
             <div class="col-md-3 col-sm-6">
                <div id="ho_color" class="services_main">
-                  <i><img src="{{ url_for('static', filename='images/services_icon1.png') }}" alt="#"/></i>
-                  <img class="ho" src="{{ url_for('static', filename='images/services_icon1h.png') }}" alt="#"/>
+                  <i><img src="{{ url_for('static', filename='images/services_icon1.png') }}" alt="#" /></i>
+                  <img class="ho" src="{{ url_for('static', filename='images/services_icon1h.png') }}" alt="#" />
                   <h3>Safe & Secure</h3>
                   <p>Security services, Storage etc.
                   </p>
@@ -159,8 +172,8 @@
 
             <div class="col-md-3 col-sm-6">
                <div id="ho_color" class="services_main">
-                  <i><img src="{{ url_for('static', filename='images/services_icon2.png') }}" alt="#"/></i>
-                  <img class="ho" src="{{ url_for('static', filename='images/services_icon2h.png') }}" alt="#"/>
+                  <i><img src="{{ url_for('static', filename='images/services_icon2.png') }}" alt="#" /></i>
+                  <img class="ho" src="{{ url_for('static', filename='images/services_icon2h.png') }}" alt="#" />
                   <h3>Mobile Phone</h3>
                   <p>Insurance services
                   </p>
@@ -170,8 +183,8 @@
 
             <div class="col-md-3 col-sm-6">
                <div id="ho_color" class="services_main">
-                  <i><img src="{{ url_for('static', filename='images/services_icon3.png') }}" alt="#"/></i>
-                  <img class="ho" src="{{ url_for('static', filename='images/services_icon3h.png') }}" alt="#"/>
+                  <i><img src="{{ url_for('static', filename='images/services_icon3.png') }}" alt="#" /></i>
+                  <img class="ho" src="{{ url_for('static', filename='images/services_icon3h.png') }}" alt="#" />
                   <h3>Financial Services</h3>
                   <p>Personal Loan, Investment
                   </p>
@@ -181,8 +194,8 @@
 
             <div class="col-md-3 col-sm-6">
                <div id="ho_color" class="services_main">
-                  <i><img src="{{ url_for('static', filename='images/services_icon4.png') }}" alt="#"/></i>
-                  <img class="ho" src="{{ url_for('static', filename='images/services_icon4h.png') }}" alt="#"/>
+                  <i><img src="{{ url_for('static', filename='images/services_icon4.png') }}" alt="#" /></i>
+                  <img class="ho" src="{{ url_for('static', filename='images/services_icon4h.png') }}" alt="#" />
                   <h3>Personal Services</h3>
                   <p>Road side assistance, Medical Care
                   </p>
@@ -196,12 +209,13 @@
    <!-- end services section -->
 
    <!--  footer -->
-   <footer >
+   <footer>
       <div class="footer">
          <div class="container">
             <div class="row">
                <div class="col-lg-3 col-md-6 col-sm-6">
-                  <a class="logo2" href="index.html"><img src="{{ url_for('static', filename='images/loogo2.png') }}" alt="#"/></a>
+                  <a class="logo2" href="index.html"><img src="{{ url_for('static', filename='images/loogo2.png') }}"
+                        alt="#" /></a>
                   <div class="follow">
                      <p></p>
                   </div>
@@ -209,10 +223,12 @@
                <div class="col-lg-3 col-md-6 col-sm-6">
                   <h3>Quick link</h3>
                   <ul class="link_icon">
-                     <li> <a href="{{ url_for('front.home') }}"><i class="fa fa-chevron-right" aria-hidden=""></i>Home</a></li>
-                     <li> <a href="{{ url_for('front.about') }}"><i class="fa fa-chevron-right" aria-hidden="blog"></i>About </a></li>
-                     <li> <a href="{{ url_for('front.services') }}"><i class="fa fa-chevron-right" aria-hidden="contact"></i>Services</a></li>
-                     <li> <a href="{{ url_for('front.login') }}"><i class="fa fa-chevron-right" aria-hidden="blog"></i>Login</a></li>
+                     <li> <a href="{{ url_for('front.home') }}"><i class="fa fa-chevron-right"
+                              aria-hidden=""></i>Home</a></li>
+                     <li> <a href="{{ url_for('front.about') }}"><i class="fa fa-chevron-right"
+                              aria-hidden="blog"></i>About </a></li>
+                     <li> <a href="{{ url_for('front.login') }}"><i class="fa fa-chevron-right"
+                              aria-hidden="blog"></i>Login</a></li>
                   </ul>
                </div>
 

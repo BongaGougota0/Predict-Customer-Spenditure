@@ -5,104 +5,104 @@
 			display: flex;
 			flex-direction: row;
 		}
-		
+
 		.sidebar {
 			width: 200px;
 			background-color: #f0f0f0;
 			padding: 20px;
 		}
-		
+
 		.sidebar ul {
 			list-style: none;
 			margin: 0;
 			padding: 0;
 		}
-		
+
 		.sidebar li {
 			margin-bottom: 10px;
 		}
-		
+
 		.sidebar a {
 			text-decoration: none;
 			color: #333;
 		}
-		
+
 		.sidebar a.selected {
 			font-weight: bold;
 			color: #337ab7;
 		}
-		
+
 		.main-content {
 			flex: 1;
 			padding: 20px;
 		}
-		
+
 		.selected-content {
 			background-color: #fff;
 			padding: 20px;
 			border: 1px solid #ddd;
 		}
-		
+
 		.slider {
 			width: 100%;
 			overflow: hidden;
 		}
-		
+
 		.slide {
 			width: 100%;
 			float: left;
 		}
 
-        .transaction-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-gap: 10px;
-        }
+		.transaction-grid {
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+			grid-gap: 10px;
+		}
 
-        .grid-header {
-            background-color: #f0f0f0;
-            padding: 10px;
-        }
+		.grid-header {
+			background-color: #f0f0f0;
+			padding: 10px;
+		}
 
-        .grid-cell {
-            padding: 10px;
-            border: 1px solid #ddd;
-        }
+		.grid-cell {
+			padding: 10px;
+			border: 1px solid #ddd;
+		}
 
-        .grid-row {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-        }
+		.grid-row {
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+		}
 	</style>
 </head>
+
 <body>
-    <div class="dashboard">
-        <div class="sidebar">
-            <ul>
-                <li><a href="{{ url_for('mainbp.dashboard') }}" class="selected">Account Overview</a></li>
-                <li><a href="{{ url_for('mainbp.transactions') }}">Transaction History</a></li>
-                <li><a href="{{ url_for('mainbp.payments') }}">Payment Options</a></li>
-                <li><a href="{{ url_for('mainbp.services') }}">Services</a></li>
-                <li><a href="{{ url_for('mainbp.settings') }}">Settings</a></li>
+	<div class="dashboard">
+		<div class="sidebar">
+			<ul>
+				<li><a href="{{ url_for('mainbp.dashboard') }}" class="selected">Account Overview</a></li>
+				<li><a href="{{ url_for('mainbp.transactions') }}">Transaction History</a></li>
+				<li><a href="{{ url_for('mainbp.payments') }}">Payment Options</a></li>
+				<li><a href="{{ url_for('mainbp.services') }}">Services</a></li>
+				<li><a href="{{ url_for('mainbp.settings') }}">Settings</a></li>
 				<li><a href="{{ url_for('front.logout') }}">Logout</a></li>
-            </ul>
-        </div>
-        <div class="main-content">
-            <div class="selected-content">
-                <!-- Content for Account Overview will be displayed here -->
-                {% block content %}
-                {% endblock content %}
-            </div>
-        </div>
-    </div>
-
-    {% for service in services %}
-        <div class="slider">
-            <div class="slide">
-                <!-- Slide display content -->
-                <p>{{ service }}</p>
-            </div>
-        </div>
-    {% endfor %}
-
+			</ul>
+		</div>
+		<div class="main-content">
+			<div class="selected-content">
+				{% with messages = get_flashed_messages(with_categories=true) %}
+				{% if messages %}
+				{% for category, message in messages %}
+				<div class="alert alert-{{ category }}">
+					{{ message }}
+				</div>
+				{% endfor %}
+				{% endif %}
+				{% endwith %}
+				<!-- Content for Account Overview will be displayed here -->
+				{% block content %}
+				{% endblock content %}
+			</div>
+		</div>
+	</div>
 </body>

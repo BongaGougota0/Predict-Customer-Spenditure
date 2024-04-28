@@ -18,9 +18,10 @@ class User(db.Model, UserMixin):
     date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     role = db.Column(db.String(15), nullable=False, default='customer')
     gender = db.Column(db.String(2), nullable=True, default='X')
+    account_balance = db.Column(db.Integer, default=0)
 
     def __repr__(self):
-        return f"( id = {self.id}, name = {self.name}, account_number = {self.account_number}, gender =  {self.gender} )\n"
+        return f"( id = {self.id}, name = {self.name}, account_number = {self.account_number}, gender =  {self.gender}, balance = {self.account_balance} )\n"
 
 class Transaction(db.Model):
     id = db.Column(db.Integer, primary_key=True)
