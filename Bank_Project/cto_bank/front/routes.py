@@ -19,6 +19,9 @@ def login():
         #check user exists
         user = User.query.filter_by(account_number = acc_number).first()
         if user and bcrypt.check_password_hash(user.password, acc_password):
+            if user.role == "admin":
+                login_user(user, remember = True)
+                return redirect( url_for('admin.admin_transactions') )
             login_user(user, remember = True)
             flash('User logged in','success')
             return redirect(url_for('mainbp.dashboard'))

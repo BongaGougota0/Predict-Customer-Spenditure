@@ -1,0 +1,52 @@
+{% extends "admin_layout.html" %}
+{% block content %}
+<head>
+    <title>User Transactions</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Transaction Records</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>TransactionID</th>
+            <th>Transaction Location</th>
+            <th>TransactionDate</th>
+            <th>TransactionAmount (R)</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for transaction in transactions %}
+            <tr>
+                <td>{{ transaction.id }}</td>
+                <td>{{ transaction.transaction_location }}</td>
+                <td>{{ transaction.transaction_date }}</td>
+                <td>{{ transaction.transaction_amount }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+{% endblock content %}

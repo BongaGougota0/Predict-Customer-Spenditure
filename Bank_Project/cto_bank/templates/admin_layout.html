@@ -1,0 +1,184 @@
+<head>
+    <title>Admin Dashboard</title>
+    <style>
+        .dashboard {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .sidebar {
+            width: 200px;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .sidebar a.selected {
+            font-weight: bold;
+            color: #337ab7;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .selected-content {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+        }
+
+        .slider {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .slide {
+            width: 100%;
+            float: left;
+        }
+
+        .transaction-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 10px;
+        }
+
+        .grid-header {
+            background-color: #f0f0f0;
+            padding: 10px;
+        }
+
+        .grid-cell {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .grid-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        #Form body {
+            font-family: Arial, sans-serif;
+        }
+
+        .popup-form {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .popup-form form {
+            background-color: white;
+            margin: 20% auto;
+            padding: 20px;
+            width: 80%;
+            max-width: 400px;
+        }
+
+        .popup-form h2 {
+            text-align: center;
+        }
+
+        .popup-form label,
+        .popup-form input,
+        .popup-form textarea,
+        .popup-form button {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .popup-form button {
+            width: 48%;
+            margin-right: 2%;
+            float: left;
+        }
+
+        .popup-form button:last-child {
+            margin-right: 0;
+            float: right;
+        }
+
+        .popup-form button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+        }
+
+        .popup-form button[type="submit"]:hover,
+        .popup-form button[type="button"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dashboard">
+        <div class="sidebar">
+            <ul>
+                <li><a href="{{ url_for('admin.admin_transactions') }}">Transactions</a></li>
+                <li><a href="{{ url_for('admin.admin_payments') }}">Payments</a></li>
+                <li><a href="{{ url_for('admin.admin_services') }}">Services</a></li>
+                <li><button id="open-popup-btn"> + Service</button></li>
+                <li><a href="{{ url_for('front.logout') }}">Logout</a></li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <div class="selected-content">
+                <!-- Content for Account Overview will be displayed here -->
+                {% block content %}
+                {% endblock content %}
+            </div>
+        </div>
+    </div>
+
+    <div id="popup-form" class="popup-form">
+        <form id="form" action="{{ url_for('admin.add_service') }}" enctype="multipart/form-data" method="POST">
+            
+            <h2>Add Bank Service / Product</h2>
+            <label for="title">Title:</label><br>
+            <input type="text" id="title" name="title" required><br>
+            <label for="description">Description:</label><br>
+            <textarea id="description" name="description" required></textarea><br>
+            <label for="amount">Amount:</label><br>
+            <input type="number" id="amount" name="amount" required><br>
+            <label for="image">Image URL:</label><br>
+            <input type="url" id="image" name="image"><br>
+            <button type="submit">Submit</button>
+            <button type="button" id="close-popup-btn">Close</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("open-popup-btn").addEventListener("click", function () {
+            document.getElementById("popup-form").style.display = "block";
+        });
+
+        document.getElementById("close-popup-btn").addEventListener("click", function () {
+            document.getElementById("popup-form").style.display = "none";
+        });
+    </script>
+</body>

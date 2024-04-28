@@ -22,8 +22,10 @@ def create_app():
 
     from cto_bank.front.routes import front
     from cto_bank.main.routes import mainbp
+    from cto_bank.admin.admin import admin
     app.register_blueprint(mainbp)
     app.register_blueprint(front)
+    app.register_blueprint(admin)
     return app
 
 from cto_bank.models import *

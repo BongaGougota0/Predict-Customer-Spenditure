@@ -1,5 +1,6 @@
 <!-- {% extends "layout.html" %}
 {% block content %} -->
+
 <head>
 	<title>Login CTO</title>
 	<style>
@@ -11,25 +12,25 @@
 			border: 1px solid #ddd;
 			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 		}
-		
+
 		.login-header {
 			background-color: #009899;
 			color: #fff;
 			padding: 10px;
 			text-align: center;
 		}
-		
+
 		.login-form {
 			margin-top: 20px;
 		}
-		
+
 		.input-field {
 			width: 100%;
 			padding: 10px;
 			margin-bottom: 20px;
 			border: 1px solid #ccc;
 		}
-		
+
 		.login-btn {
 			width: 100%;
 			padding: 10px;
@@ -39,17 +40,27 @@
 			border-radius: 5px;
 			cursor: pointer;
 		}
-		
+
 		.login-btn:hover {
 			background-color: #009899;
 		}
 	</style>
 </head>
+
 <body>
 	<div class="login-page">
 		<div class="login-header">
 			<h2>Welcome</h2>
 		</div>
+		{% with messages = get_flashed_messages(with_categories=true) %}
+		{% if messages %}
+		{% for category, message in messages %}
+		<div class="alert alert-{{ category }}">
+			{{ message }}
+		</div>
+		{% endfor %}
+		{% endif %}
+		{% endwith %}
 		<div class="login-form">
 			<form action="{{ url_for('front.login') }}" method="POST">
 				<input type="text" class="input-field" name="account_number" placeholder="Account Number" />

@@ -1,0 +1,52 @@
+{% extends "admin_layout.html" %}
+{% block content %}
+<head>
+    <title>CTO Services</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<h2>CTO Services</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Cost (R), pm</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for service in services %}
+            <tr>
+                <td>{{ service.id }}</td>
+                <td>{{ service.service_title }}</td>
+                <td>{{ service.service_description }}</td>
+                <td>{{ service.service_amount }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+{% endblock content %}
