@@ -1,3 +1,7 @@
+Bank_Project/admin_user.txt
+Bank_Project/*.csv
+*.csv
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
