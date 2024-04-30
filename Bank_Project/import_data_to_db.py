@@ -11,7 +11,7 @@ db.create_all()
 def read_csv_file(path_to_file):
     data = pd.read_csv(path_to_file)
 
-    for index, df in data.iterrows():
+    for _, df in data.iterrows():
         transaction_id = get_digit(df['TransactionID'])
         customer_account_no = df['CustomerID']
         customer_gender = df['CustGender']
@@ -38,7 +38,7 @@ def read_csv_file(path_to_file):
                                                 transaction_time = time_, transaction_location = df['CustLocation'])
             next
         else:
-            add_user = User(name = df['CustomerID'], account_number = customer_account_no, password = password, gender = customer_gender)
+            add_user = User(name = df['CustomerID'], account_number = customer_account_no, password = password, gender = customer_gender, account_balance = df['CustAccountBalance'])
             db.session.add(add_user)
             db.session.commit()
         #Transaction data record
