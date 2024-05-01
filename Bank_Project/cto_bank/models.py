@@ -18,6 +18,7 @@ class User(db.Model, UserMixin):
     date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     role = db.Column(db.String(15), nullable=False, default='customer')
     gender = db.Column(db.String(2), nullable=True, default='X')
+    age = db.Column(db.Integer, nullable = False)
     account_balance = db.Column(db.Integer, default=0)
 
     def __repr__(self):
@@ -43,6 +44,7 @@ class Transaction(db.Model):
 
 class Service(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    service_class = db.Column(db.Integer, default = 0)
     service_amount = db.Column(db.Integer, nullable=False)
     service_title = db.Column(db.String(100), nullable=False)
     service_description = db.Column(db.String(400), nullable=False)

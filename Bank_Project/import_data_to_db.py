@@ -38,7 +38,9 @@ def read_csv_file(path_to_file):
                                                 transaction_time = time_, transaction_location = df['CustLocation'])
             next
         else:
-            add_user = User(name = df['CustomerID'], account_number = customer_account_no, password = password, gender = customer_gender, account_balance = df['CustAccountBalance'])
+            add_user = User(name = df['CustomerID'], account_number = customer_account_no,\
+                             password = password, gender = customer_gender, age = df['Age'],\
+                                  account_balance = df['CustAccountBalance'])
             db.session.add(add_user)
             db.session.commit()
         #Transaction data record
@@ -71,4 +73,4 @@ def generate_password(password):
 
 if __name__ == '__main__':
     read_csv_file("bank_transactions.csv")
-    subprocess.call(["chmod","666", "./instance/mysite.db"])
+    subprocess.call(["chmod","666", "./instance/database.db"])
