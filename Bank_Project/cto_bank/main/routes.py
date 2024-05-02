@@ -1,7 +1,8 @@
 from flask import render_template, url_for, flash, redirect, request, Blueprint
 from flask_login import current_user, login_required
+from sqlalchemy import func
 from cto_bank import db
-
+from cto_bank import service_presenter
 from cto_bank.models import Transaction, Service, User
 
 mainbp = Blueprint('mainbp', __name__)
@@ -22,8 +23,21 @@ def transactions():
 @login_required
 def services():
     #get all services suggested for this user.
-    services = Service.query.all()
+    av, t, f = calculate_average_spend(current_user.id)
+    service_presenter.prepare_data(av, t, f)
+    suggested_services = service_presenter.predict()
+    # print(f"m mainbp.services :: see suggested services by model {suggested_services}")
+    services = Service.query.filter_by(service_class = int(suggested_services)).all()
+    # print(f" found services are {services}")
     return render_template("services.html", services = services)
+
+def calculate_average_spend(user_id):
+    total_spend = db.session.query(func.sum(Transaction.transaction_amount)).filter_by(user_id=user_id).scalar()
+    num_transactions = db.session.query(func.count(Transaction.id)).filter_by(user_id=user_id).scalar()
+    if num_transactions > 0:
+        return total_spend / num_transactions, total_spend, num_transactions
+    else:
+        return 0, 0, 0
 
 @mainbp.route("/payments/")
 @login_required
@@ -51,4 +65,19 @@ def deposit():
         current_user.account_balance = 0
         db.session.commit()
 
+    return redirect(url_for('mainbp.transactions'))
+
+@mainbp.route("/transact-user/<int:service_id>", methods=['POST','GET'])
+def transact(service_id):
+    service_charge = Service.query.get(service_id)
+    #check user can transact this service
+    if int(current_user.account_balance) >= int(service_charge.service_amount):
+        current_user.account_balance -= service_charge.service_amount
+        new_transaction = Transaction(transaction_id = 2324, user_id = current_user.id, transaction_amount = service_charge.service_amount, service_location = 1, service_id = service_charge.id)
+        db.session.add(new_transaction)
+        db.session.commit()
+        flash('transaction succesfully complete', 'success')
+        return redirect(url_for('mainbp.transactions'))
+    
+    flash('Sorry you have insufficient funds', 'danger')
     return redirect(url_for('mainbp.transactions'))

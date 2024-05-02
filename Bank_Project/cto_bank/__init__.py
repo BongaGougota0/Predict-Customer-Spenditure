@@ -3,8 +3,9 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_migrate import Migrate
+from cto_bank.utils.service_presenter import ServicePresenter
 
-
+service_presenter = ServicePresenter()
 db = SQLAlchemy()
 bcrypt = Bcrypt()
 login_manager = LoginManager()
@@ -28,4 +29,4 @@ def create_app():
     app.register_blueprint(admin)
     return app
 
-from cto_bank.models import *
+# from cto_bank.models import *

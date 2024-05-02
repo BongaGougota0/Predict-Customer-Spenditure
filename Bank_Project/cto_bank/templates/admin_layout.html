@@ -165,8 +165,16 @@
             <textarea id="description" name="description" required></textarea><br>
             <label for="amount">Amount:</label><br>
             <input type="number" id="amount" name="amount" required><br>
-            <label for="image">Image URL:</label><br>
-            <input type="url" id="image" name="image"><br>
+            <label for="service_class" >Service class type : 0, 1, 2</label>
+            <div>
+                <select name="service_class" class="form-label input-group">
+                    {% for class in classes %}
+                    <option value="{{ class }}">{{ class }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <!-- <label for="image">Insert Service display image:</label><br>
+            <input type="file" id="service_image" name="service_image"><br> -->
             <button type="submit">Submit</button>
             <button type="button" id="close-popup-btn">Close</button>
         </form>

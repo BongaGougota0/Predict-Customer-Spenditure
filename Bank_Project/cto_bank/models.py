@@ -31,7 +31,7 @@ class Transaction(db.Model):
     transaction_amount = db.Column(db.Integer, nullable=True)
     transaction_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     transaction_time = db.Column(db.DateTime, default=datetime.utcnow)
-    transaction_location = db.Column(db.String(200), nullable=False)
+    transaction_location = db.Column(db.String(200), nullable=False, default = "Mumbai")
     
     # One-to-one relationship with Service
     service_id = db.Column(db.Integer, db.ForeignKey('service.id'), nullable=True)
@@ -48,9 +48,9 @@ class Service(db.Model):
     service_amount = db.Column(db.Integer, nullable=False)
     service_title = db.Column(db.String(100), nullable=False)
     service_description = db.Column(db.String(400), nullable=False)
-    service_image = db.Column(db.String(200), default="service.jpg")
+    service_image = db.Column(db.String(200), default="service_icon.jpg")
 
     def __repr__(self):
-        return f"Service(service_amount={self.service_amount}, service_title={self.service_title},\
+        return f"Service(service_class = {self.service_class}, service_amount={self.service_amount}, service_title={self.service_title},\
          service_description={self.service_description}, service_image={self.service_image})\n"
 
