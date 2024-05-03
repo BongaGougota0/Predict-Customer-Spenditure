@@ -28,5 +28,3 @@ def create_app():
     app.register_blueprint(front)
     app.register_blueprint(admin)
     return app
-
-# from cto_bank.models import *

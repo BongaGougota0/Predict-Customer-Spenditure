@@ -159,49 +159,21 @@
             </div>
 
             <!-- Iterate and display service objects here. -->
-            <div class="col-md-3 col-sm-6">
-               <div id="ho_color" class="services_main">
-                  <i><img src="{{ url_for('static', filename='images/services_icon1.png') }}" alt="#" /></i>
-                  <img class="ho" src="{{ url_for('static', filename='images/services_icon1h.png') }}" alt="#" />
-                  <h3>Safe & Secure</h3>
-                  <p>Security services, Storage etc.
-                  </p>
-                  <a class="read_more" href="#">Read More</a>
-               </div>
-            </div>
 
-            <div class="col-md-3 col-sm-6">
-               <div id="ho_color" class="services_main">
-                  <i><img src="{{ url_for('static', filename='images/services_icon2.png') }}" alt="#" /></i>
-                  <img class="ho" src="{{ url_for('static', filename='images/services_icon2h.png') }}" alt="#" />
-                  <h3>Mobile Phone</h3>
-                  <p>Insurance services
-                  </p>
-                  <a class="read_more" href="#">Read More</a>
+            {% for service in services %}
+            
+               <div class="col-md-3 col-sm-6">
+                  <div id="ho_color" class="services_main">
+                     <i><img src="{{ url_for('static', filename='images/'+ service.service_image) }}" alt="#" /></i>
+                     <img class="ho" src="{{ url_for('static', filename='images/' + service.service_image) }}" alt="#" />
+                     <h3>{{ service.service_title }}</h3>
+                     <p>{{ service.service_description }}
+                     </p>
+                     <a class="read_more" href="#">Login to Subscribe</a>
+                  </div>
                </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6">
-               <div id="ho_color" class="services_main">
-                  <i><img src="{{ url_for('static', filename='images/services_icon3.png') }}" alt="#" /></i>
-                  <img class="ho" src="{{ url_for('static', filename='images/services_icon3h.png') }}" alt="#" />
-                  <h3>Financial Services</h3>
-                  <p>Personal Loan, Investment
-                  </p>
-                  <a class="read_more" href="#">Read More</a>
-               </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6">
-               <div id="ho_color" class="services_main">
-                  <i><img src="{{ url_for('static', filename='images/services_icon4.png') }}" alt="#" /></i>
-                  <img class="ho" src="{{ url_for('static', filename='images/services_icon4h.png') }}" alt="#" />
-                  <h3>Personal Services</h3>
-                  <p>Road side assistance, Medical Care
-                  </p>
-                  <a class="read_more" href="#">Read More</a>
-               </div>
-            </div>
+            
+            {% endfor %}
 
          </div>
       </div>

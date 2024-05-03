@@ -2,14 +2,15 @@ from flask import render_template, url_for, flash, redirect, request, Blueprint
 from flask_login import login_user, logout_user
 from cto_bank import db, bcrypt
 
-from cto_bank.models import User
+from cto_bank.models import Service, User
 
 front = Blueprint('front', __name__)
 
 @front.route("/home/", methods=['GET', 'POST'])
 @front.route("/", methods=['GET', 'POST'])
 def home():
-    return render_template('index.html')
+    services = Service.query.all()
+    return render_template('index.html', services = services)
 
 @front.route("/login/", methods=['GET', 'POST'])
 def login():

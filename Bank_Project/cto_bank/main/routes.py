@@ -4,6 +4,7 @@ from sqlalchemy import func
 from cto_bank import db
 from cto_bank import service_presenter
 from cto_bank.models import Transaction, Service, User
+import secrets
 
 mainbp = Blueprint('mainbp', __name__)
 
@@ -73,7 +74,7 @@ def transact(service_id):
     #check user can transact this service
     if int(current_user.account_balance) >= int(service_charge.service_amount):
         current_user.account_balance -= service_charge.service_amount
-        new_transaction = Transaction(transaction_id = 2324, user_id = current_user.id, transaction_amount = service_charge.service_amount, service_location = 1, service_id = service_charge.id)
+        new_transaction = Transaction(transaction_id = secrets.token_hex(6), user_id = current_user.id, transaction_amount = service_charge.service_amount, transaction_location = 1, service_id = service_charge.id)
         db.session.add(new_transaction)
         db.session.commit()
         flash('transaction succesfully complete', 'success')

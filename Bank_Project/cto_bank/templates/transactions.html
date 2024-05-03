@@ -91,7 +91,7 @@
     {% endfor %}
     {% endif %}
     {% endwith %}
-<h2>Transaction Records ======  Your current balance is : R {{ current_user.account_balance }}   ======== <button id="open-popup-btn">  Deposit Funds</button></h2>
+<h2>Transaction Records ======  Your current balance is : R {{ "%0.2f" | format(current_user.account_balance) }}   ======== <button id="open-popup-btn">  Deposit Funds</button></h2>
 
 <table>
     <thead>
