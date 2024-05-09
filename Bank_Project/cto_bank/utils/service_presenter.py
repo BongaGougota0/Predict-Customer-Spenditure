@@ -25,7 +25,7 @@ class ServicePresenter(object):
                                 'AverageSpend' : [average],
                                 'total_transactions' : [total_transactions_value],
                                 'age_group' : [get_agegroup_encoding()] })
-        print(f"service_presenter refreshed {user_df}")
+        print(f"service_presenter refreshed: \n {user_df}")
         self.user_data = user_df
 
     def predict(self):
@@ -33,7 +33,7 @@ class ServicePresenter(object):
         prediction = self.model.predict(self.user_data)
         #clean the digit
         class_id = prediction[0]
-        print(f"m: predict() :: check class id f {class_id}")
+        print(f"m: predict() :: class for user is: {class_id}")
         return class_id
     
     # def get_user_services(self):

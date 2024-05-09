@@ -91,37 +91,18 @@
     {% endfor %}
     {% endif %}
     {% endwith %}
-<h2>Transaction Records ======  Your current balance is : R {{ "%0.2f" | format(current_user.account_balance) }}   ======== <button id="open-popup-btn">  Deposit Funds</button></h2>
-
-<table>
-    <thead>
-        <tr>
-            <th>TransactionID</th>
-            <th>Transaction Location</th>
-            <th>TransactionDate</th>
-            <th>TransactionAmount (R)</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for transaction in transactions %}
-            <tr>
-                <td>{{ transaction.id }}</td>
-                <td>{{ transaction.transaction_location }}</td>
-                <td>{{ transaction.transaction_date }}</td>
-                <td>{{ transaction.transaction_amount }}</td>
-                <td><a href="{{ url_for('mainbp.delete_transaction', transaction_id = transaction.id) }}">delete</a></td>
-            </tr>
-        {% endfor %}
-    </tbody>
-</table>
+<h2>Profile {{ current_user.name }} <button id="open-popup-btn" style="background-color: #4CAF50; color: white;"> Update Your Details</button></h2> ======  Your current balance is : R {{ "%0.2f" | format(current_user.account_balance) }}   ======== 
 
 <div id="popup-form" class="popup-form">
-    <form id="form" action="{{ url_for('mainbp.deposit') }}" method="POST">
+    <form id="form" action="{{ url_for('mainbp.settings') }}" method="POST">
         
-        <h2>Deposit Hypothetical Funds</h2>
+        <h2>Edit your details</h2>
+        <p>test whether they influence services recommended to you.</p>
         <label for="title">Reference : {{ current_user.name }}</label><br>
-        <label for="amount">Amount:</label><br>
-        <input type="number" id="amount" name="account_top_up" required><br>
+        <label for="age">age:</label> {{ current_user.age }}<br>
+        <input type="number" id="age" name="age" required><br>
+        <label for="gender">gender: {{ current_user.gender }}</label><br>
+        <input type="text" id="gender" name="gender" required>Gender (M or F)<br>
         <button type="submit">Submit</button>
         <button type="button" id="close-popup-btn">Close</button>
     </form>

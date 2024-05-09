@@ -46,10 +46,22 @@ def payments():
     services = ""
     return render_template("transactions.html", services = services)
 
-@mainbp.route("/settings/")
+@mainbp.route("/settings/", methods = ["POST", "GET"])
 @login_required
 def settings():
-    return render_template("transactions.html")
+    if request.method == 'POST':
+        #update user account balance
+        
+        gender = request.form['gender'] # Gender is encoded in the model (1 or 0)
+        age = int(request.form['age']) # make it a double
+        current_user.age = age
+        current_user.gender = gender
+        db.session.commit()
+
+        flash('User details updated!', 'success')
+        return redirect( url_for('mainbp.settings') )
+
+    return render_template("settings.html")
 
 @mainbp.route("/deposit-into-your-account", methods=["POST"])
 def deposit():
@@ -81,4 +93,12 @@ def transact(service_id):
         return redirect(url_for('mainbp.transactions'))
     
     flash('Sorry you have insufficient funds', 'danger')
+    return redirect(url_for('mainbp.transactions'))
+
+@mainbp.route("/delete-transaction/<int:transaction_id>")
+def delete_transaction(transaction_id):
+    to_delete_transaction = Transaction.query.filter_by(id = transaction_id).first()
+    db.session.delete(to_delete_transaction)
+    db.session.commit()
+    flash("tranasction deleted!", "warning")
     return redirect(url_for('mainbp.transactions'))
