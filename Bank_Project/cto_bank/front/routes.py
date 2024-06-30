@@ -27,8 +27,8 @@ def login():
             flash('User logged in','success')
             return redirect(url_for('mainbp.dashboard'))
         flash('Please check your account no. or password', 'warning')
-    flash("Login with acc. C5430833 & psswd : C5430833 , do deposits and subscribe to services\
-           and see service recommendations change for your account. ")
+    flash("Login with acc. C2548543 & psswd : C2548543 , do deposits and subscribe to services\
+           and see service recommendations change for your account. ", "success")
     return render_template('login.html')
 
 
